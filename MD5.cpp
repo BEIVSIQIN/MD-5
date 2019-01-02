@@ -2,7 +2,6 @@
 
 using namespace std;
 
-/* Constants for MD5Transform routine. */
 #define S11 7
 #define S12 12
 #define S13 17
@@ -21,8 +20,6 @@ using namespace std;
 #define S44 21
 
 
-/* F, G, H and I are basic MD5 functions.
-*/
 #define F(x, y, z) (((x) & (y)) | ((~x) & (z)))
 #define G(x, y, z) (((x) & (z)) | ((y) & (~z)))
 #define H(x, y, z) ((x) ^ (y) ^ (z))
@@ -105,17 +102,13 @@ void MD5::reset() {
 	_state[3] = 0x10325476;
 }
 
-/* Updating the context with a input buffer. */
 void MD5::update(const void *input, size_t length) {
 	update((const byte*)input, length);
 }
 
-/* Updating the context with a string. */
 void MD5::update(const string &str) {
 	update((const byte*)str.c_str(), str.length());
 }
-
-/* Updating the context with a file. */
 void MD5::update(ifstream &in) {
 
 	if (!in)
@@ -166,8 +159,6 @@ void MD5::update(const byte *input, size_t length) {
 	else {
 		i = 0;
 	}
-
-	/* Buffer remaining input */
 	memcpy(&_buffer[index], &input[i], length - i);
 }
 
